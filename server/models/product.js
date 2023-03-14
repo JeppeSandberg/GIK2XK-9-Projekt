@@ -9,12 +9,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(100),
             allowNull: false
         },
-        body: {
+        description: {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        imageUrl: {
-            type: DataTypes.STRING(255)
-        }
+        price: {
+            type: DataTypes.DOUBLE(6,2),
+            validate: {
+                isFloat: true,
+            },
+            allowNull: false
+        },
     }, { underscored: true });
 };

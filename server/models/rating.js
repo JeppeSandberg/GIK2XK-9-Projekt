@@ -5,13 +5,15 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        title: {
-            type: DataTypes.STRING(100),
+        rating: {
+            type: DataTypes.DOUBLE(2,1),
+            validate: {
+                isFloat: true,
+            },
             allowNull: false
         },
-        body: {
-            type: DataTypes.TEXT,
-            allowNull: false
+        description: {
+            type: DataTypes.STRING(200),
         },
     }, { underscored: true });
 };

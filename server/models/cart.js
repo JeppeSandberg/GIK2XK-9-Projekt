@@ -5,8 +5,11 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
-            type: DataTypes.STRING(50),
+        amount: {
+            type: DataTypes.DOUBLE(5,0),
+            validate: {
+                isInt: true,
+            },
             allowNull: false
         },
     }, { underscored: true });
