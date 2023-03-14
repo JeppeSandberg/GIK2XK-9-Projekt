@@ -1,12 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('tag', {
+    return sequelize.define('rating', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
-            type: DataTypes.STRING(50),
+        title: {
+            type: DataTypes.STRING(100),
+            allowNull: false
+        },
+        body: {
+            type: DataTypes.TEXT,
             allowNull: false
         },
     }, { underscored: true });
