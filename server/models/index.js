@@ -37,6 +37,33 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+db.cart.belongsTo(db.user);
+db.user.hasMany(db.cart, {
+  allowNull: false,
+  onDelete: 'CASCADE'
+});
+
+db.cart.belongsToMany(db.product, {through: db.cartRow});
+db.product.belongsToMany(db.cart, {through: db.cartRow});
+
+db.rating.belongsTo(db.user);
+db.user.hasMany(db.rating, {
+  allowNull: false,
+  onDelete: 'CASCADE'
+});
+
+db.rating.belongsTo(db.product);
+db.product.hasMany(db.rating, {
+  allowNull: false,
+  onDelete: 'CASCADE'
+});
+
+db.productImage.belongsTo(db.product);
+db.product.hasMany(db.productImage, {
+  allowNull: false,
+  onDelete: 'CASCADE'
+});
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

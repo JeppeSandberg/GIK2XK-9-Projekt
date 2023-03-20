@@ -1,32 +1,49 @@
 const router = require("express").Router();
-const db = require('../models');
+const productService = require("../services/productService");
+
+router.post('/:id/addComment', (req, res) => {
+    const comment = req.body;
+    const id = req.params.id;
+  
+    productService.addComment(id, comment).then((result) => {
+      res.status(result.status).json(result.data);
+    });
+});
+
+router.get('/:id', (req, res) => {
+    const id = req.params.id;
+  
+    productService.getById(id).then((result) => {
+        res.status(result.status).json(result.data);
+    });
+});
 
 router.get("/", (req, res) => {
-    db.product.findAll().then((result)=>{
-        res.send(result);
+    productService.getAll().then((result) => {
+        res.status(result.status).json(result.data);
     });
 });
 
 router.post("/", (req, res) => {
-    db.product.create(req.body).then( result => {
-        res.send(result);
+    const product = req.body;
+    productService.create(product).then((result) => {
+        res.status(result.status).json(result.data);
     });
 });
 
 router.put("/", (req, res) => {
-    db.product.update(req.body, {
-        where: {id: req.body.id}
-    }).then((result) => {
-        res.send(result)
-    });
+    const product = req.body;
+    const id = req.body.id;
+    
+    productService.update(product, id).then((result) => {
+        res.status(result.status).json(result.data);
+    }); 
 });
 
 router.delete("/", (req, res) => {
-    db.product.destroy({
-        where: {id: req.body.id}
-    })
-    .then(() => {
-        res.json(`Inlägget raderades`)
+    const id = req.body.id;
+    productService.destroy(product, id).then((result) => {
+        res.status(result.status).json(result.data);
     });
 });
 
