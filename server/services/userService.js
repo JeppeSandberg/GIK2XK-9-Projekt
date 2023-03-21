@@ -38,13 +38,25 @@ async function getById(id) {
       const user = await db.user.findOne({
         where: { id },
         include: [
-        db.cart,
+            {
+                model: db.cart,
+                include: [db.product]
+            }
         ]
       });
       return createResponseSuccess(_formatUser(user));
     } catch (error) {
       return createResponseError(error.status, error.message);
     }
+}
+
+async function getAll() {
+    try {
+        const allUsers = await db.user.findAll({ include: db.cart});
+        return createResponseSuccess(allUsers.map((user) => _formatUser(user)));
+    }catch (error){
+        return createResponseError(error.status, error.message);
+    }   
 }
 
 async function create(user) {
@@ -115,8 +127,10 @@ function _formatUser(user) {
         user.carts.map((cart) => {
           return (cleanUser.carts = [
             {
+              id: cart.id,  
               payed: cart.payed,
-              createdAt: cart.createdAt
+              createdAt: cart.createdAt,
+              products: cart.products
             },
             ...cleanUser.carts
           ]);
@@ -129,6 +143,7 @@ function _formatUser(user) {
 
 module.exports = {
     getById,
+    getAll,
     create,
     update,
     destroy

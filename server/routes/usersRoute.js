@@ -9,6 +9,12 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get("/", (req, res) => {
+    userService.getAll().then((result) => {
+        res.status(result.status).json(result.data);
+    });
+});
+
 router.post("/", (req, res) => {
     const user = req.body;
     userService.create(user).then((result) => {
@@ -27,7 +33,7 @@ router.put("/", (req, res) => {
 
 router.delete("/", (req, res) => {
     const id = req.body.id;
-    userService.destroy(user, id).then((result) => {
+    userService.destroy(id).then((result) => {
         res.status(result.status).json(result.data);
     });
 });

@@ -51,7 +51,7 @@ router.put("/", (req, res) => {
 
 router.delete("/", (req, res) => {
     const id = req.body.id;
-    productService.destroy(product, id).then((result) => {
+    productService.destroy(id).then((result) => {
         res.status(result.status).json(result.data);
     });
 });
