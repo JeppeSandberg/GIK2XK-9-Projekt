@@ -10,6 +10,15 @@ router.post('/:id/addRating', (req, res) => {
     });
 });
 
+router.post('/:id/addImage', (req, res) => {
+    const productImage = req.body;
+    const id = req.params.id;
+  
+    productService.addImage(id, productImage).then((result) => {
+      res.status(result.status).json(result.data);
+    });
+});
+
 router.get('/:id', (req, res) => {
     const id = req.params.id;
   

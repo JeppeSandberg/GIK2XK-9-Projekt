@@ -30,10 +30,6 @@ module.exports = (sequelize, DataTypes) => {
                 isUrl: true
             }
         },
-        admin: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        },
 
     }, { underscored: true });
 };

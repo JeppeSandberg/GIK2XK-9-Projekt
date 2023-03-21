@@ -5,6 +5,8 @@ const {
     createResponseError,
     createResponseMessage
 } = require("../helpers/responseHelper.js");
+const user = require('../models/user');
+const cart = require('../models/cart');
 
 const constraints = {
     title: {
@@ -61,7 +63,20 @@ async function addRating(id, rating) {
     } catch (error) {
       return createResponseError(error.status, error.message);
     }
+}
+
+async function addImage(id, productImage) {
+  if (!id) {
+    return createResponseError(422, 'Id is obligatory');
   }
+  try {
+    productImage.productId = id;
+    const newproductImage = await db.productImage.create(productImage);
+    return createResponseSuccess(newproductImage);
+  } catch (error) {
+    return createResponseError(error.status, error.message);
+  }
+}
 
 async function create(product) {
     const invalideData = validate(product, constraints)
@@ -154,7 +169,29 @@ module.exports = {
     getById,
     getAll,
     addRating,
+    addImage,
     create,
     update,
     destroy
 }
+
+
+
+
+
+/*
+
+funktioner som behövs:
+CRUD user
+add to cart
+CRUD cart
+
+
+sidor som skapas:
+produkt lista
+individuell produkt
+skapa produkt
+skapa user
+cart
+
+*/
