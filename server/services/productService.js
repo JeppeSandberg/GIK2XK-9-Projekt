@@ -63,19 +63,23 @@ async function addRating(id, rating) {
     }
 }
 
-/*async function addToCart(id, rating) {
-  if (!id) {
+/*
+async function addToCart(product, id) {
+  if (!product) {
     return createResponseError(422, 'Id is obligatory');
   }
   try {
-    rating.productId = id;
-    const newrating = await db.rating.create(rating);
-    return createResponseSuccess(newrating);
+    const cart = await db.cart.findOne({
+      where: { id }
+    })
+    const chosenProduct = getById(product)
+    await cart.addProduct(chosenProduct);
+    return createResponseSuccess(cart);
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
-}*/
-
+}
+*/
 async function addImage(id, productImage) {
   if (!id) {
     return createResponseError(422, 'Id is obligatory');
@@ -182,6 +186,7 @@ module.exports = {
     getAll,
     addRating,
     addImage,
+    //addToCart,
     create,
     update,
     destroy
@@ -194,9 +199,7 @@ module.exports = {
 /*
 
 funktioner som behövs:
-CRUD user
 CRUD cart
-
 
 add to cart
 
