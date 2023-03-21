@@ -118,7 +118,8 @@ function _formatUser(user) {
       password: user.password,
       imageUrl: user.imageUrl,
       createdAt: user.createdAt,
-      updatedAt: user.updatedAt
+      updatedAt: user.updatedAt,
+      body: user.body
     };
 
     if (user.carts) {
@@ -135,8 +136,8 @@ function _formatUser(user) {
             ...cleanUser.carts
           ]);
         });
-      }
-
+    }
+    return cleanUser;  
 }
 
 

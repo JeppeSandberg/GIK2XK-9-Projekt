@@ -172,6 +172,7 @@ function _formatProduct(product) {
         });
         return cleanProduct;
       }
+  return cleanProduct;
 }
 
 
