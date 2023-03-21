@@ -29,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 isUrl: true
             }
-        }
+        },
+        admin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+
     }, { underscored: true });
 };

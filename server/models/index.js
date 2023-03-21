@@ -37,6 +37,9 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+//Foreing keys down below
+
+
 db.cart.belongsTo(db.user);
 db.user.hasMany(db.cart, {
   allowNull: false,
