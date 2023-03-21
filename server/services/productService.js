@@ -27,13 +27,13 @@ async function getById(id) {
     try {
       const product = await db.product.findOne({
         where: { id },
-        /*include: [
-            db.productImage,
-          {
-            model: db.comment,
-            include: [db.user]
-          }
-        ]*/
+        include: [
+        db.productImage,
+        {
+          model: db.rating,
+          include: [db.user]
+        }
+      ]
       });
       return createResponseSuccess(_formatProduct(product));
     } catch (error) {
@@ -50,14 +50,14 @@ async function getAll() {
     }   
 }
 
-async function addComment(id, comment) {
+async function addRating(id, rating) {
     if (!id) {
       return createResponseError(422, 'Id is obligatory');
     }
     try {
-      comment.postId = id;
-      const newComment = await db.comment.create(comment);
-      return createResponseSuccess(newComment);
+      rating.productId = id;
+      const newrating = await db.rating.create(rating);
+      return createResponseSuccess(newrating);
     } catch (error) {
       return createResponseError(error.status, error.message);
     }
@@ -124,28 +124,25 @@ function _formatProduct(product) {
       imageUrl: []
     };
   
-    if (product.comments) {
-      cleanProduct.comments = [];
+    if (product.ratings) {
+      cleanProduct.ratings = [];
   
-      product.comments.map((comment) => {
-        return (cleanProduct.comments = [
+      product.ratings.map((rating) => {
+        return (cleanProduct.ratings = [
           {
-            title: comment.title,
-            body: comment.body,
-            author: {
-                firstName: comment.user.firstName,
-                lastName: comment.user.lastName
-            },
-            createdAt: comment.createdAt
+            title: rating.title,
+            body: rating.description,
+            rating: rating.rating,
+            createdAt: rating.createdAt
           },
-          ...cleanProduct.comments
+          ...cleanProduct.ratings
         ]);
       });
     }
 
     if (product.productImages) {
         product.productImages.map((productImage) => {
-          return (cleanProduct.productImage = [productImage.imageUrl, ...cleanProduct.productImages]);
+          return (cleanProduct.imageUrl = [productImage.imageUrl, ...cleanProduct.imageUrl]);
         });
         return cleanProduct;
       }
@@ -156,7 +153,7 @@ function _formatProduct(product) {
 module.exports = {
     getById,
     getAll,
-    addComment,
+    addRating,
     create,
     update,
     destroy
