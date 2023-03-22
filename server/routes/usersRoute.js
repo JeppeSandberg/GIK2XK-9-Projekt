@@ -9,6 +9,14 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/:id/getCart', (req, res) => {
+    const id = req.params.id;
+  
+    userService.getCart(id).then((result) => {
+        res.status(result.status).json(result.data);
+    });
+});
+
 router.get("/", (req, res) => {
     userService.getAll().then((result) => {
         res.status(result.status).json(result.data);

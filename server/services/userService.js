@@ -50,6 +50,23 @@ async function getById(id) {
     }
 }
 
+async function getCart(id){
+    try {
+        const user = await db.user.findOne({
+          where: { id },
+          include: [
+              {
+                  model: db.cart,
+                  include: [db.product]
+              }
+          ]
+        });
+        return createResponseSuccess(_formatCart(user));
+      } catch (error) {
+        return createResponseError(error.status, error.message);
+      }
+}
+
 async function getAll() {
     try {
         const allUsers = await db.user.findAll({ include: db.cart});
@@ -140,10 +157,32 @@ function _formatUser(user) {
     return cleanUser;  
 }
 
+function _formatCart(user) {
+    const cleanCart = {};
+
+    if (user.carts) {
+        cleanCart.carts = [];
+    
+        user.carts.map((cart) => {
+          return (cleanCart.carts = [
+            {
+              id: cart.id,  
+              payed: cart.payed,
+              createdAt: cart.createdAt,
+              products: cart.products
+            },
+            ...cleanCart.carts
+          ]);
+        });
+    }
+    return cleanCart;  
+}
+
 
 
 module.exports = {
     getById,
+    getCart,
     getAll,
     create,
     update,

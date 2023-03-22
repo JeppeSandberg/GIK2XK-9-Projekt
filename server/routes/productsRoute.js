@@ -18,16 +18,17 @@ router.post('/:id/addImage', (req, res) => {
       res.status(result.status).json(result.data);
     });
 });
-/*
+
 router.post('/:id/addToCart', (req, res) => {
     const target = req.body.id;
     const id = req.params.id;
+    const amount = req.body.amount
   
-    productService.addToCart(id, target).then((result) => {
+    productService.addToCart(id, target, amount).then((result) => {
       res.status(result.status).json(result.data);
     });
 });
-*/
+
 router.get('/:id', (req, res) => {
     const id = req.params.id;
   

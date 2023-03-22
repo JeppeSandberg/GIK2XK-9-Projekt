@@ -63,23 +63,24 @@ async function addRating(id, rating) {
     }
 }
 
-/*
-async function addToCart(product, id) {
-  if (!product) {
-    return createResponseError(422, 'Id is obligatory');
+async function addToCart(productId, cartId, amount) {
+  if (!productId) {
+    return createResponseError(422, 'ProductId is obligatory');
+  }
+  if (!cartId) {
+    return createResponseError(422, 'CartId is obligatory');
   }
   try {
-    const cart = await db.cart.findOne({
-      where: { id }
-    })
-    const chosenProduct = getById(product)
-    await cart.addProduct(chosenProduct);
-    return createResponseSuccess(cart);
+    const id = productId
+    const product = await db.product.findOne({where: {id}})
+    const newLink = await product.addCart(cartId);
+
+    return createResponseSuccess(newLink);
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
 }
-*/
+
 async function addImage(id, productImage) {
   if (!id) {
     return createResponseError(422, 'Id is obligatory');
@@ -163,7 +164,8 @@ function _formatProduct(product) {
             title: rating.title,
             body: rating.description,
             rating: rating.rating,
-            createdAt: rating.createdAt
+            createdAt: rating.createdAt,
+            userId: rating.userId
           },
           ...cleanProduct.ratings
         ]);
@@ -186,7 +188,7 @@ module.exports = {
     getAll,
     addRating,
     addImage,
-    //addToCart,
+    addToCart,
     create,
     update,
     destroy
