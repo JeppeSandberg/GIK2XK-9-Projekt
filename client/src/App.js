@@ -17,13 +17,13 @@ function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/">Home</Link>
             </Typography>
-            <Typography variant="h6" component="div">
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/products">All Products</Link>
             </Typography>
-            <Typography variant="h6" component="div">
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/productEdit">Add Products</Link>
             </Typography>
-            <Typography variant="h6" component="div">
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/productDetail">ProductDetail</Link>
             </Typography>
           </Toolbar>
