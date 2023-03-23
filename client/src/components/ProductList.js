@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAll } from '../models/PostModel';
+import { getAll } from '../models/ProductModel';
 import ProductItemSmall from './ProductItemSmall';
 
 function ProductList({ pathname }) {
