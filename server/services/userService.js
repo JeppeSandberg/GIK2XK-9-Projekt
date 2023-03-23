@@ -57,7 +57,12 @@ async function getCart(id){
           include: [
               {
                   model: db.cart,
-                  include: [db.product]
+                  include: [
+                    {
+                        model: db.product,
+                        include: [db.rating]
+                    }
+                ]
               }
           ]
         });
