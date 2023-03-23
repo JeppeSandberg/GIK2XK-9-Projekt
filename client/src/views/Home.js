@@ -2,6 +2,7 @@ import ProductList from '../components/ProductList';
 import UserList from '../components/UserList';
 import { Box, Grid, Paper, Typography } from '@mui/material';
 import './Home.css';
+import { CustomPaper } from '../components/smallComponents';
 
 function Home() {
   return (
@@ -17,9 +18,9 @@ function Home() {
           <Typography variant="h4" component="h2">
             Users
           </Typography>
-          <Paper>
+          <CustomPaper>
             <UserList></UserList>
-          </Paper>
+          </CustomPaper>
         </Box>
       </Grid>
     </Grid>
