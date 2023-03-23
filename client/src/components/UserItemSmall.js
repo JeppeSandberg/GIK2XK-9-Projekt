@@ -1,11 +1,11 @@
-
+import { Link } from 'react-router-dom';
 
 function UserItemSmall({ user }) {
   return (
     <>
-      <img alt={user.firstName} height="50" width="50" src={user.imageUrl} />
-      <p>{user.firstName}</p>
-      <p>{user.lastName}</p>
+      <img alt={user.email} height="50" width="50" src={user.imageUrl} />
+      <Link to={`/user/${user.id}`}>{user.email}</Link>
+      <p>{user.firstName} {user.lastName}</p>
     </>
   );
 }
