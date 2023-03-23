@@ -1,48 +1,14 @@
+import { useEffect, useState } from 'react';
+import { getAll } from '../models/PostModel';
 import ProductItemSmall from './ProductItemSmall';
 
-function ProductList() {
-  const products = [
-    {
-      id: 5,
-      title: "Leg",
-      price: 100,
-      createdAt: "2023-03-21T08:15:42.000Z",
-      updatedAt: "2023-03-21T08:15:42.000Z",
-      imageUrl: [
-          "http://urltoimage.com",
-          "http://urltoimage.com",
-          "http://urltoimage.com",
-          "http://urltoimage.com"
-      ],
-    },
-    {
-        id: 6,
-        title: "Leg",
-        price: 100,
-        createdAt: "2023-03-21T08:15:42.000Z",
-        updatedAt: "2023-03-21T08:15:42.000Z",
-        imageUrl: [
-            "http://urltoimage.com",
-            "http://urltoimage.com",
-            "http://urltoimage.com",
-            "http://urltoimage.com"
-        ],
-    },
-    {
-        id: 7,
-        title: "Leg",
-        price: 100,
-        createdAt: "2023-03-21T08:15:42.000Z",
-        updatedAt: "2023-03-21T08:15:42.000Z",
-        imageUrl: [
-            "http://urltoimage.com",
-            "http://urltoimage.com",
-            "http://urltoimage.com",
-            "http://urltoimage.com"
-        ],
-    }
+function ProductList({ pathname }) {
+  console.log(pathname);
+  const [products, setProducts] = useState([]);
 
-  ];
+  useEffect(() => {
+    getAll(pathname).then((products) => setProducts(products));
+  }, [pathname]);
 
   return (
     <ul>

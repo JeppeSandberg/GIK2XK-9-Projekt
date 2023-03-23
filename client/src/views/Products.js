@@ -2,8 +2,8 @@ import { useLocations } from 'react-router-dom';
 import ProductList from '../components/ProductList';
 
 function Products() {
-  const locations = useLocations();
-  console.log(locations);
+  const location = useLocations();
+  console.log(location);
   return <ProductList pathname={location.pathname} />;
 }
 

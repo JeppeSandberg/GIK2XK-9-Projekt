@@ -1,18 +1,13 @@
+import { useEffect, useState } from 'react';
+import { getAll } from '../models/UserModel';
 import UserItemSmall from './UserItemSmall';
 
 function UserList() {
-  const users = [
-    {
-        id: 6,
-        email: "gustaf@jaderb.se",
-        firstName: "Gustaf",
-        lastName: "Jäderberg",
-        password: "huitzilopochtli",
-        imageUrl: "http://urltoimage.com",
-        createdAt: "2023-03-21T10:51:01.000Z",
-        updatedAt: "2023-03-21T10:51:01.000Z",
-    }
-  ];
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    getAll().then((users) => setUsers(users));
+  }, []);
   return (
     <ul>
       {users &&
