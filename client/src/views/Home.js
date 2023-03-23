@@ -1,23 +1,25 @@
 import ProductList from '../components/ProductList';
 import UserList from '../components/UserList';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Paper, Typography } from '@mui/material';
 import './Home.css';
 
 function Home() {
   return (
-    <Grid container columnSpacing={2} p={2} className="Home">
-      <Grid className="Home__grid-item" item xs={12} md={8}>
+    <Grid container columnSpacing={5} p={2} className="Home">
+      <Grid  item xs={12} md={8}>
         <Typography variant="h4" component="h2">
           Products
         </Typography>
         <ProductList></ProductList>
       </Grid>
-      <Grid className="Home__grid-item" item xs={12} md={4}>
-        <Box className="Home__grid-item__content">
+      <Grid  item xs={12} md={4}>
+        <Box>
           <Typography variant="h4" component="h2">
             Users
           </Typography>
-          <UserList></UserList>
+          <Paper>
+            <UserList></UserList>
+          </Paper>
         </Box>
       </Grid>
     </Grid>
