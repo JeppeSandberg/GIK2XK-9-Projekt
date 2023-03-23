@@ -6,6 +6,7 @@ import Products from './views/Products';
 import ProductEdit from './views/ProductEdit';
 import ProductDetail from './views/ProductDetail';
 import { Container } from '@mui/system';
+import UserDetail from './views/UserDetail';
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/productEdit">Add Products</Link>
             </Typography>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Link to="/user">User</Link>
+            </Typography>
+
 
           </Toolbar>
         </AppBar>
@@ -53,6 +58,10 @@ function App() {
             exact
             path="/products/:id"
             element={<ProductDetail></ProductDetail>}></Route>
+            <Route
+            exact
+            path="/user/:id"
+            element={<UserDetail></UserDetail>}></Route>
         </Routes>
         </Container>
     </div>
