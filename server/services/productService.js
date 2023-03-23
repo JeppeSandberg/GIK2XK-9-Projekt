@@ -162,7 +162,7 @@ function _formatProduct(product) {
         return (cleanProduct.ratings = [
           {
             title: rating.title,
-            body: rating.description,
+            description: rating.description,
             rating: rating.rating,
             createdAt: rating.createdAt,
             userId: rating.userId
@@ -202,13 +202,13 @@ module.exports = {
 
 funktioner som behövs:
 CRUD cart
-
 add to cart
 
 sidor som skapas:
 produkt lista
 individuell produkt
 skapa produkt
+redigera produkt
 skapa user
 cart
 

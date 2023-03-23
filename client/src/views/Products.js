@@ -1,6 +1,10 @@
+import { useParams } from 'react-router-dom';
+import ProductList from '../components/ProductList';
+
 function Products() {
-    return <h2>Products</h2>;
-  }
-  
-  export default Products;
-  
+  const params = useParams();
+  console.log(params);
+  return <ProductList />;
+}
+
+export default Products;

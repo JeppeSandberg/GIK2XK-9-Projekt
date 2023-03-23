@@ -30,11 +30,29 @@ function App() {
         </AppBar>
       </Box>
       <div>
-        <Routes>
-          <Route path="/" element={<Home></Home>}></Route>
-          <Route path="/products" element={<Products></Products>}></Route>
-          <Route path="/productEdit" element={<ProductEdit></ProductEdit>}></Route>
-          <Route path="/productDetail" element={<ProductDetail></ProductDetail>}></Route>
+      <Routes>
+          <Route exact path="/" element={<Home></Home>}></Route>
+          <Route exact path="/products" element={<Products></Products>}></Route>
+          <Route
+            exact
+            path="/users/:id/products"
+            element={<Products></Products>}></Route>
+          <Route
+            exact
+            path="/tags/:name/products"
+            element={<Products></Products>}></Route>
+          <Route
+            exact
+            path="/products/new"
+            element={<ProductEdit></ProductEdit>}></Route>
+          <Route
+            exact
+            path="/products/:id/edit"
+            element={<ProductEdit></ProductEdit>}></Route>
+          <Route
+            exact
+            path="/products/:id"
+            element={<ProductDetail></ProductDetail>}></Route>
         </Routes>
       </div>
     </div>
