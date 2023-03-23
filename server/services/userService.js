@@ -60,7 +60,7 @@ async function getCart(id){
                   include: [
                     {
                         model: db.product,
-                        include: [db.rating]
+                        include: [db.productImage]
                     }
                 ]
               }
