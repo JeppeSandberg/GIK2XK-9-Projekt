@@ -5,6 +5,7 @@ import Home from './views/Home';
 import Products from './views/Products';
 import ProductEdit from './views/ProductEdit';
 import ProductDetail from './views/ProductDetail';
+import { Container } from '@mui/system';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <h1>Shop</h1>
 
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/">Home</Link>
@@ -29,7 +30,8 @@ function App() {
           </Toolbar>
         </AppBar>
       </Box>
-      <div>
+     
+      <Container sx={{marginTop: '6rem'}}>
       <Routes>
           <Route exact path="/" element={<Home></Home>}></Route>
           <Route exact path="/products" element={<Products></Products>}></Route>
@@ -54,7 +56,7 @@ function App() {
             path="/products/:id"
             element={<ProductDetail></ProductDetail>}></Route>
         </Routes>
-      </div>
+        </Container>
     </div>
   );
 }
