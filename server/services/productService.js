@@ -63,20 +63,30 @@ async function addRating(id, rating) {
     }
 }
 
-async function addToCart(productId, cartId, amount) {
+async function addToCart(productId, userId, amount) {
   if (!productId) {
     return createResponseError(422, 'ProductId is obligatory');
   }
-  if (!cartId) {
+  if (!userId) {
     return createResponseError(422, 'CartId is obligatory');
   }
   try {
-    const id = productId
-    const product = await db.product.findOne({where: {id}})
-    const newLink = await product.addCart(cartId);
+    
+    const foundOrCreatedCart = await db.cart.findOrCreate({
+      
+      where: { userId },
+      defaults: { payed: false },
+      order: [['createdAt', 'desc']]
+    });
+  
+    const cartId = foundOrCreatedCart[0].id;
+
+    const newLink = await db.cartRow.create({cartId, productId, amount});
+    
 
     return createResponseSuccess(newLink);
   } catch (error) {
+    console.log(error)
     return createResponseError(error.status, error.message);
   }
 }
