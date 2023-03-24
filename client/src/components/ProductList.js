@@ -3,7 +3,7 @@ import { getAll } from '../models/ProductModel';
 import ProductItemSmall from './ProductItemSmall';
 
 function ProductList({ pathname }) {
-  console.log(pathname);
+  
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -11,6 +11,7 @@ function ProductList({ pathname }) {
   }, [pathname]);
 
   return (
+    
     <ul>
       {products &&
         products.map((product) => {
