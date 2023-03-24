@@ -14,8 +14,8 @@ function UserCartSmall({ cart }) {
                 <Card elavation={0}>
                     <div>
                         <Link to={`/products/${product.id}`}>{product.title}</Link>
-                        <p key={`productId_${product.id}`}>"{product.description}"</p>
-                        <p key={`productId_${product.id}`}>"{product.price}"</p>
+                        <p key={`productId_${product.id}`}>Description: "{product.description}"</p>
+                        <p key={`productId_${product.id}`}>Price: "{product.price}"</p>
                     </div>
                 </Card>
             </CustomPaper>
