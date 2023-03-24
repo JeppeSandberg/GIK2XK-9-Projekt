@@ -1,13 +1,27 @@
 import UserCartSmall from './UserCartSmall';
 
 function UserItemLarge({ user }) {
+  let totalPrice = 0;
+  const price = user.carts &&
+    user.carts.map((cart) => {
+      return (
+        cart.products &&
+          cart.products.map((product) => {
+            totalPrice += parseInt(product.price);
+            return (
+                parseInt(product.price)
+            );
+          })
+
+      );
+    })
+  
   return (
     <>
       <div>
-        <p>{user.createdAt}</p>
-        <p>{user.firstName}</p>
-        <p>{user.lastName}</p>
-        <p>{user.email}</p>
+        
+        <p>User Name: {user.firstName} {user.lastName}</p>
+        <p>User Email: {user.email}</p>
         {user.carts &&
         user.carts.map((cart) => {
           return (
@@ -18,8 +32,10 @@ function UserItemLarge({ user }) {
 
           );
         })}
+        <p>Total Price: {totalPrice}</p>
         
       </div>
+      <p>User created at: {user.createdAt}</p>
     </>
   );
 }
