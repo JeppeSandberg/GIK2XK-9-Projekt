@@ -18,7 +18,7 @@ function RatingForm({ onSave }) {
         value={rating.rating}
         onChange={(e) => setRating({ ...rating, rating: e.target.value })}
       />
-      <Button onClick={() => onSave({ ...rating, userId: 1 })}>
+      <Button onClick={() => onSave({ ...rating, userId: 6 })}>
         Add Rating
       </Button>
     </form>

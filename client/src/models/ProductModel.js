@@ -56,7 +56,7 @@ export async function remove(id) {
 }
 
 export async function addRating(id, rating) {
-  const result = await api.product(`/products/${id}/addRating`, rating);
+  const result = await api.post(`/products/${id}/addRating`, rating);
 
   if (result.status === 200) return result.data;
   else {
@@ -67,7 +67,7 @@ export async function addRating(id, rating) {
 }
 
 export async function addImage(id, image) {
-    const result = await api.product(`/products/${id}/addRating`, image);
+    const result = await api.post(`/products/${id}/addImage`, image);
   
     if (result.status === 200) return result.data;
     else {
@@ -78,7 +78,7 @@ export async function addImage(id, image) {
 }
 
 export async function addToCart(id, cart) {
-    const result = await api.product(`/products/${id}/addToCart`, cart);
+    const result = await api.post(`/products/${id}/addToCart`, cart);
   
     if (result.status === 200) return result.data;
     else {
