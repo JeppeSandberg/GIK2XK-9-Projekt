@@ -1,30 +1,39 @@
+import { Card } from '@mui/material';
+import { CustomPaper } from './smallComponents';
 
 function ProductItemLarge({ product }) {
+  let total = 0;
+  product.ratings &&
+    product.ratings.map((rating) => (
+      total += parseInt(rating.rating)
+  ))
+  console.log(total)
+  let numOfRatings = 0;
+  product.ratings &&
+    product.ratings.map((rating) => (
+    numOfRatings++
+  ))
+  console.log(numOfRatings)
   return (
     <>
       <div>
         {product.imageUrl &&
           product.imageUrl.map((imageUrl) => <img alt={product.title} height="50" width="50" src={product.imageUrl} />)}
       </div>
-      <div>
-
-      </div>
-      <div>
-        <p>{product.createdAt}</p>
-        <p>{product.title}</p>
-        <p>{product.description}</p>
-        <p>{product.price}</p>
-      </div>
-      <div>
-        {product.ratings &&
-          product.ratings.map((rating) => (
-            (<div>
-                <p key={`commentId_${rating.id}`}>{rating.rating}</p>
-                <p key={`commentId_${rating.id}`}>"{rating.description}"</p>
-            </div>)
-          ))
-        }
-      </div>
+      <CustomPaper>
+        <Card elavation={0}>
+          <div>
+            <p>Created at: {product.createdAt}</p>
+            <p>Title: {product.title}</p>
+            <p>Description: {product.description}</p>
+            <p>Price: {product.price}</p>
+          </div>
+          <div>
+            <p>Rating: {total/numOfRatings}/5</p>
+          </div>
+        </Card>
+      </CustomPaper>
+      
     </>
   );
 }
