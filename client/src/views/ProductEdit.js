@@ -1,7 +1,7 @@
 import { Button, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { create, getOne, remove, update } from '../models/ProductModel';
+import { addImage, create, getOne, remove, update } from '../models/ProductModel';
 
 function ProductEdit() {
   const params = useParams();
@@ -38,8 +38,10 @@ function onChange(e) {
 function onSave() {
   if(product.id === 0) {
     create(product).then(() => console.log('sparad'));
+    addImage(product.id, {imageUrl: product.imageUrl}).then(() => console.log('sparad'));
   } else {
     update(product).then(() => console.log('uppdaterad'));
+    addImage(product.id, {imageUrl: product.imageUrl}).then(() => console.log('sparad'));
   }
 }
 
