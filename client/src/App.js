@@ -25,9 +25,6 @@ function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/products/new">Add Products</Link>
             </Typography>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/user">User</Link>
-            </Typography>
 
 
           </Toolbar>
