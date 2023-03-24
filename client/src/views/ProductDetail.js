@@ -23,7 +23,6 @@ function ProductDetail() {
     }
 
     function addCart(amount){
-      console.log(amount)
       addToCart(productId, 6, amount).then((product) => setProduct(product));
     }
   
