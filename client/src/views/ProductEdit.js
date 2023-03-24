@@ -11,7 +11,7 @@ function ProductEdit() {
     id: 0,
     title: '',
     description: '', 
-    price: 0,
+    price: '',
     imageUrl: ''
   }
   const [product, setProduct] = useState({emptyProduct});
