@@ -62,10 +62,10 @@ function onDelete() {
         onChange={onChange}
         name="description"
         id="description"
-        multiline
-        minRows={4}
         label="description"
         variant="standard"
+        multiline
+        minRows={4}
       />{' '}
       <br />
       <TextField 
