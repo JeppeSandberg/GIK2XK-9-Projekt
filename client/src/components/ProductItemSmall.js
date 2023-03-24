@@ -1,5 +1,6 @@
 import { Card, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { toDateTimeString } from './FormarHelper';
 import { CustomPaper } from './smallComponents';
 
 function ProductItemSmall({ product }) {
@@ -7,7 +8,7 @@ function ProductItemSmall({ product }) {
     <CustomPaper>
       <Card elavation={0}>
       <div>
-        <div>Released: {product.createdAt}</div>
+        <div>Released: {toDateTimeString(product.createdAt)}</div>
         <Typography variant="h5" component="h3">
           <Link to={`/products/${product.id}`}>{product.title}</Link>
         </Typography>

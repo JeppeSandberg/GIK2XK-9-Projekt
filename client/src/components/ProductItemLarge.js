@@ -1,4 +1,5 @@
 import { Card } from '@mui/material';
+import { toDateTimeString } from './FormarHelper';
 import { CustomPaper } from './smallComponents';
 
 function ProductItemLarge({ product }) {
@@ -23,7 +24,7 @@ function ProductItemLarge({ product }) {
       <CustomPaper>
         <Card elavation={0}>
           <div>
-            <p>Created at: {product.createdAt}</p>
+            <p>Created at: {toDateTimeString(product.createdAt)}</p>
             <p>Title: {product.title}</p>
             <p>Description: {product.description}</p>
             <p>Price: {product.price}</p>
