@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import RatingForm from '../components/RatingForm'
@@ -11,7 +11,9 @@ function ProductDetail() {
     const productId = params.id;
   
     const [product, setProduct] = useState({});
-  
+
+    const [amount, setAmount] = useState({ amount: '' });
+
     useEffect(() => {
       getOne(productId).then((product) => setProduct(product));
     }, [productId]);
@@ -20,8 +22,8 @@ function ProductDetail() {
       addRating(productId, rating).then((product) => setProduct(product));
     }
 
-    function addCart(product){
-      addToCart(productId, 6, 2).then((product) => setProduct(product));
+    function addCart(amount){
+      addToCart(productId, 6, amount.amount).then((product) => setProduct(product));
     }
   
     return (
@@ -41,9 +43,18 @@ function ProductDetail() {
         <Link to={`/products/${productId}/edit`}>
           <Button variant="filled">Edit</Button>
         </Link>
-        <Button onClick={addCart} variant="filled">
-          Add to Cart
-        </Button>
+        <form>
+          <TextField
+            label="Amount"
+            name="amount"
+            value={amount.amount}
+            onChange={(e) => setAmount({ ...amount, amount: e.target.value })}
+          />
+          <Button onClick={addCart(amount.amount)}>
+            Add To Cart: 
+          </Button>
+        </form>
+        
       </>
     );
 }
