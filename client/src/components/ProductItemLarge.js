@@ -7,13 +7,13 @@ function ProductItemLarge({ product }) {
     product.ratings.map((rating) => (
       total += parseInt(rating.rating)
   ))
-  console.log(total)
+ 
   let numOfRatings = 0;
   product.ratings &&
     product.ratings.map((rating) => (
     numOfRatings++
   ))
-  console.log(numOfRatings)
+
   return (
     <>
       <div>
