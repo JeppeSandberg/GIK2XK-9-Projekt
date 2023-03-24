@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import RatingForm from '../components/RatingForm'
 
 import ProductItemLarge from '../components/ProductItemLarge';
-import { addRating, getOne } from '../models/ProductModel';
+import { addRating, addToCart, getOne } from '../models/ProductModel';
 
 function ProductDetail() {
     const params = useParams();
@@ -18,6 +18,10 @@ function ProductDetail() {
   
     function onRatingAdd(rating) {
       addRating(productId, rating).then((product) => setProduct(product));
+    }
+
+    function addCart(product){
+      addToCart(productId, 6, 2).then((product) => setProduct(product));
     }
   
     return (
@@ -37,6 +41,9 @@ function ProductDetail() {
         <Link to={`/products/${productId}/edit`}>
           <Button variant="filled">Edit</Button>
         </Link>
+        <Button onClick={addCart} variant="filled">
+          Add to Cart
+        </Button>
       </>
     );
 }

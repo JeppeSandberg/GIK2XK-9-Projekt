@@ -68,9 +68,10 @@ async function addToCart(productId, userId, amount) {
     return createResponseError(422, 'ProductId is obligatory');
   }
   if (!userId) {
-    return createResponseError(422, 'CartId is obligatory');
+    return createResponseError(422, 'UserId is obligatory');
   }
   try {
+    console.log(productId)
     
     const foundOrCreatedCart = await db.cart.findOrCreate({
       

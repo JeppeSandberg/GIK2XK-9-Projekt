@@ -3,7 +3,7 @@ import ProductList from '../components/ProductList';
 
 function Products() {
   const location = useLocation();
-  console.log(location);
+
   return <ProductList pathname={location.pathname} />;
 }
 

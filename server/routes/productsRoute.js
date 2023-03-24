@@ -20,9 +20,10 @@ router.post('/:id/addImage', (req, res) => {
 });
 
 router.post('/:id/addToCart', (req, res) => {
-    const target = req.body.id;
+    const target = req.body.userId;
     const id = req.params.id;
     const amount = req.body.amount
+    console.log(req.body)
   
     productService.addToCart(id, target, amount).then((result) => {
       res.status(result.status).json(result.data);

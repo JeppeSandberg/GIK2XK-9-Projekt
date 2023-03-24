@@ -77,9 +77,11 @@ export async function addImage(id, image) {
     }
 }
 
-export async function addToCart(id, cart) {
-    const result = await api.post(`/products/${id}/addToCart`, cart);
-  
+export async function addToCart(id, userId, amount) {
+    const addCartRow = {userId: userId, amount: amount}
+
+    const result = await api.post(`/products/${id}/addToCart`, addCartRow);
+    
     if (result.status === 200) return result.data;
     else {
       console.log(result.status);
