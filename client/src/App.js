@@ -23,7 +23,7 @@ function App() {
               <Link to="/products">All Products</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/productEdit">Add Products</Link>
+              <Link to="/products/new">Add Products</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/user">User</Link>
