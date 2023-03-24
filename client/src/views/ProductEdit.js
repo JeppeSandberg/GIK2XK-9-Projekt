@@ -86,11 +86,11 @@ function onDelete() {
         label="Url till bild" 
         variant="standard" 
       /> <br />
-      <Button onClick={onSave} variant="filled">Spara</Button>
+      <Button onClick={onSave} variant="filled">Save</Button>
 
       {product.id !== 0 && (
         <Button onClick={onDelete} variant="filled">
-          Ta bort
+          Delete
         </Button>
       )}
     </form>
