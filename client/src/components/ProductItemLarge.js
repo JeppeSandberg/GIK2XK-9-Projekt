@@ -14,6 +14,8 @@ function ProductItemLarge({ product }) {
     numOfRatings++
   ))
 
+  console.log(product)
+
   return (
     <>
       <div>
