@@ -12,7 +12,7 @@ function ProductDetail() {
   
     const [product, setProduct] = useState({});
 
-    const [amount, setAmount] = useState({ amount: '' });
+    const [amount, setAmount] = useState({ amount: '1' });
 
     useEffect(() => {
       getOne(productId).then((product) => setProduct(product));
@@ -23,7 +23,8 @@ function ProductDetail() {
     }
 
     function addCart(amount){
-      addToCart(productId, 6, amount.amount).then((product) => setProduct(product));
+      console.log(amount)
+      addToCart(productId, 6, amount).then((product) => setProduct(product));
     }
   
     return (
@@ -50,7 +51,7 @@ function ProductDetail() {
             value={amount.amount}
             onChange={(e) => setAmount({ ...amount, amount: e.target.value })}
           />
-          <Button onClick={addCart(amount.amount)}>
+          <Button onClick={()=>addCart(amount.amount)}>
             Add To Cart: 
           </Button>
         </form>
