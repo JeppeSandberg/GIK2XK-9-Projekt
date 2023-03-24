@@ -2,12 +2,19 @@ import UserCartSmall from './UserCartSmall';
 
 function UserItemLarge({ user }) {
   let totalPrice = 0;
+  let inbetweenA = 0;
+  let inbetweenB = 0;
+  let multiply = 0;
   const price = user.carts &&
     user.carts.map((cart) => {
       return (
         cart.products &&
           cart.products.map((product) => {
-            totalPrice += parseInt(product.price);
+            inbetweenA = parseInt(product.price);
+            inbetweenB = parseInt(product.cartRow.amount);
+            multiply = (inbetweenA*inbetweenB);
+            totalPrice += multiply
+
             return (
                 parseInt(product.price)
             );
