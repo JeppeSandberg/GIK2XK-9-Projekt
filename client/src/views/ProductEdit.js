@@ -1,14 +1,66 @@
 import { Button, TextField } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { create, getOne, remove, update } from '../models/ProductModel';
 
 function ProductEdit() {
   const params = useParams();
-  console.log(params);
+
+  const productId = params.id;
+  const emptyProduct = {
+    id: 0,
+    title: '',
+    description: '', 
+    price: 0,
+    imageUrl: ''
+  }
+  const [product, setProduct] = useState({emptyProduct});
+
+  useEffect(() => {
+    if (!isNaN(productId)) {
+      getOne(productId).then((product) =>
+        setProduct({ ...product, imageUrl: product.imageUrl || '' })
+      );
+    } else {
+      setProduct(emptyProduct);
+    }
+    // eslint-disable-next-line
+  }, [productId]);
+
+function onChange(e) {
+  const name = e.target.name;
+  const value = e.target.value;
+
+  const newProduct = {...product, [name]: value };
+  setProduct(newProduct);
+}
+
+function onSave() {
+  if(product.id === 0) {
+    create(product).then(() => console.log('sparad'));
+  } else {
+    update(product).then(() => console.log('uppdaterad'));
+  }
+}
+
+function onDelete() {
+  remove(product.id).then(() => console.log('borttaget'));
+}
 
   return (
     <form>
-      <TextField id="title" label="Title" variant="standard" /> <br />
       <TextField
+        value={product.title}
+        onChange={onChange}
+        name="title"
+        id="title" 
+        label="Title" 
+        variant="standard" 
+      /> <br />
+      <TextField
+        value={product.description}
+        onChange={onChange}
+        name="description"
         id="description"
         multiline
         minRows={4}
@@ -16,9 +68,29 @@ function ProductEdit() {
         variant="standard"
       />{' '}
       <br />
-      <TextField id="price" label="Price" variant="standard" />
+      <TextField 
+        value={product.price}
+        onChange={onChange}
+        name="price"
+        id="price" 
+        label="Price" 
+        variant="standard" />
       <br />
-      <Button variant="filled">Spara</Button>
+      <TextField
+        value={product.imageUrl}
+        onChange={onChange}
+        name="imageUrl"
+        id="imageUrl" 
+        label="Url till bild" 
+        variant="standard" 
+      /> <br />
+      <Button onClick={onSave} variant="filled">Spara</Button>
+
+      {product.id !== 0 && (
+        <Button onClick={onDelete} variant="filled">
+          Ta bort
+        </Button>
+      )}
     </form>
   );
 }
